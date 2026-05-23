@@ -1,0 +1,39 @@
+{
+  "lockfileVersion": 1,
+  "configVersion": 1,
+  "workspaces": {
+    "": {
+      "name": "fivem-ts",
+      "dependencies": {
+        "@overextended/core": "^0.2.5",
+        "@overextended/ox_lib": "^3.34.0",
+      },
+      "devDependencies": {
+        "@citizenfx/client": "latest",
+        "@citizenfx/server": "latest",
+      },
+      "peerDependencies": {
+        "typescript": "^6.0.3",
+      },
+    },
+  },
+  "packages": {
+    "@citizenfx/client": ["@citizenfx/client@2.0.29753-1", "", {}, "sha512-URClf2sMjFFQeUc7C4r2JmeiW4XvDbxwnmmZ4qYsVJQJaFk2DBMSWlc0qJRGx6UNPSs5drwjaZp5E8SbPXCUPQ=="],
+
+    "@citizenfx/server": ["@citizenfx/server@2.0.29753-1", "", {}, "sha512-+hbgy6keD4W9W9loF8+W8ZA4mccMNI9yGEEBzy87JS9bWWXd0R3C6z0XpKdC2/kKLBDgpr290eWpP7uMqHbvoA=="],
+
+    "@nativewrappers/fivem": ["@nativewrappers/fivem@0.0.103", "", {}, "sha512-x0W00Mx9ZN/rTS9XZc5Kf1hjahqRmlo9sPiuJP4kCYeQG4LDJyglXCsHcfNfygGq6WEblG1W2FLgm4MGDn/wHA=="],
+
+    "@overextended/core": ["@overextended/core@0.2.5", "", { "peerDependencies": { "typescript": "^5.8.3" } }, "sha512-0YRi2zB1UQf4FRUfsrP2QG8btQ/P/1BuN0zmBo3F/qX0+RFZuJO3Soze7pd2uwuPteuVB6Drg+nGbTcjN9EiZQ=="],
+
+    "@overextended/ox_lib": ["@overextended/ox_lib@3.34.0", "", { "dependencies": { "@nativewrappers/fivem": "^0.0.103", "@overextended/core": "^0.2.5", "csstype": "^3.1.3", "fast-printf": "^1.6.9", "typescript": "^5.4.2" } }, "sha512-8fUzm6xdRrWGSlrnXLvt9KO1d23wT5p0YHYhtrnyrHyGNe7jyhMATD/g1jDwoVyTx+I2ym0gGwwz11A1mNP7SQ=="],
+
+    "csstype": ["csstype@3.2.3", "", {}, "sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ=="],
+
+    "fast-printf": ["fast-printf@1.6.10", "", {}, "sha512-GwTgG9O4FVIdShhbVF3JxOgSBY2+ePGsu2V/UONgoCPzF9VY6ZdBMKsHKCYQHZwNk3qNouUolRDsgVxcVA5G1w=="],
+
+    "typescript": ["typescript@6.0.3", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-y2TvuxSZPDyQakkFRPZHKFm+KKVqIisdg9/CZwm9ftvKXLP8NRWj38/ODjNbr43SsoXqNuAisEf1GdCxqWcdBw=="],
+
+    "@overextended/ox_lib/typescript": ["typescript@5.9.3", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw=="],
+  }
+}

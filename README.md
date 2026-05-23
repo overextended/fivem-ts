@@ -1,57 +1,69 @@
-# fivem-typescript-boilerplate
+# FiveM TypeScript Boilerplate
 
-A boilerplate for creating FiveM resources with TypeScript.
+A template for creating FiveM resources with TypeScript.
 
-## Getting Started
+## Getting started
 
-### Node.js v18+
+> [!NOTE]
+> Install [Bun](https://bun.com) and [Git](https://git-scm.com/) if you don't already have them.
 
-Install any LTS release of [`Node.js`](https://nodejs.org/) from v18.
+Use any of the options below to initialise your resource.
 
-### pnpm
+### Using [bun create](https://bun.com/docs/runtime/templating/create)
 
-Install the [`pnpm`](https://pnpm.io/installation) package manager globally.
-
+```bash
+bun create overextended/fivem-ts
 ```
-npm install -g pnpm
+
+### Using [GitHub CLI](https://cli.github.com/)
+
+```bash
+gh repo create <name> --template=overextended/fivem-ts
 ```
 
-### Setup
+### Alternative methods
 
-Initialise your own repository by using one of the options below.
+- [Create a new repository](https://github.com/new?template_name=fivem-ts&template_owner=overextended) on GitHub.
+- [Download the template](https://github.com/overextended/fivem-ts/archive/refs/heads/main.zip) directly.
 
-- [Create a new repository](https://github.com/new?template_name=fivem-typescript-boilerplate&template_owner=overextended) using this template.
-- [Download](https://github.com/overextended/fivem-typescript-boilerplate/archive/refs/heads/main.zip) the template directly.
-- Use the [GitHub CLI](https://cli.github.com/).
-  - `gh repo create <name> --template=overextended/fivem-typescript-boilerplate`
+## Setup
 
-Navigate to your new directory and execute the following command to install dependencies.
+Customise `package.json` with your project name, author, and any other relevant information. This information is added to the fxmanifest when building the project.
 
-```
-pnpm install
+If you're looking to create a webapp (i.e. nui) consider scaffolding with Svelte.
+
+```bash
+bunx sv create web
 ```
 
 ## Development
 
-Use `pnpm watch` to actively rebuild modified files while developing the resource.
+Use `bun tsd` to build all production files in production mode using [tsdown](https://tsdown.dev/).
 
-During web development, use `pnpm web:dev` to start vite's webserver and watch for changes.
-
-## Build
-
-Use `pnpm build` to build all project files in production mode.
-
-To build and create GitHub releases, tag your commit (e.g. `v1.0.0`) and push it.
+During development use `bun dev` to actively rebuild modified files.
 
 ## Layout
 
-- [/dist/](dist)
-  - Compiled project files.
-- [/locales/](locales)
-  - JSON files used for translations with [ox_lib](https://overextended.dev/ox_lib/Modules/Locale/Shared).
-- [/scripts/](scripts)
-  - Scripts used in the development process, but not part of the compiled resource.
-- [/src/](src)
-  - Project source code.
-- [/static/](static)
-  - Files to include with the resource that aren't compiled or loaded (e.g. config).
+### [/locales/](locales)
+
+Contains translation files used with the [ox_lib](https://overextended.dev/ox_lib/Modules/Locale/Shared) locales module.
+
+### [/public/](public)
+
+Static assets served directly without processing or bundling.
+
+### [/resource/](resource)
+
+Main project source code.
+
+- [`client`](resource/client) – client modules
+- [`common`](resource/common) – shared modules
+- [`server`](resource/server) – server modules
+
+### [/scripts/](scripts)
+
+Scripts used during project development.
+
+### [/types/](types)
+
+Type definitions used across the project.

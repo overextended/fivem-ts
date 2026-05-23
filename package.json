@@ -1,43 +1,45 @@
 {
-  "name": "fivem-typescript-boilerplate",
-  "author": "Overextended",
+  "name": "fivem-ts",
+  "author": {
+    "name": "Overextended",
+    "url": "https://overextended.dev"
+  },
   "version": "0.0.0",
   "license": "",
   "description": "",
-  "type": "module",
-  "scripts": {
-    "web:dev": "cd web && vite dev",
-    "build": "node scripts/build.js",
-    "watch": "node scripts/build.js --watch",
-    "format": "pnpm biome format --write",
-    "lint": "pnpm biome lint --write"
-  },
-  "keywords": [
-    "fivem"
-  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/overextended/fivem-typescript-boilerplate.git"
+    "url": "https://github.com/overextended/fivem-ts"
   },
-  "bugs": "https://github.com/overextended/fivem-typescript-boilerplate/issues",
+  "bugs": "https://github.com/overextended/fivem-ts/issues",
+  "keywords": [
+    "fivem",
+    "overextended"
+  ],
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "oxlint",
+    "format": "oxfmt",
+    "tsd": "bun tsdown --",
+    "dev": "bun tsdown --watch"
+  },
   "devDependencies": {
     "@citizenfx/client": "latest",
     "@citizenfx/server": "latest",
-    "@jgoz/esbuild-plugin-typecheck": "^4.0.3",
-    "@overextended/fx-utils": "^0.0.4",
-    "@types/node": "^22.13.9",
-    "@types/react": "^18.3.18",
-    "@types/react-dom": "^18.3.5",
-    "@vitejs/plugin-react": "^4.3.4",
-    "esbuild": "^0.25.0",
-    "typescript": "^5.8.2",
-    "vite": "^5.4.14"
+    "@types/bun": "latest",
+    "@types/node": "^22.13.10",
+    "fast-glob": "^3.3.3",
+    "oxfmt": "^0.51.0",
+    "oxlint": "^1.66.0",
+    "tsdown": "^0.22.0",
+    "typescript": "^6.0.3"
+  },
+  "engines": {
+    "node": ">=22.9.10"
   },
   "dependencies": {
-    "@biomejs/biome": "^1.9.4",
-    "@nativewrappers/fivem": "latest",
-    "@overextended/ox_lib": "latest",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "@overextended/core": "^0.2.5",
+    "@overextended/ox_lib": "^3.34.0"
   }
 }
