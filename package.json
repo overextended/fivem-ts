@@ -1,38 +1,43 @@
 {
   "name": "fivem-ts",
-  "author": {
-    "name": "Overextended",
-    "url": "https://overextended.dev"
-  },
   "version": "0.0.0",
-  "license": "",
+  "private": true,
   "description": "",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/overextended/fivem-ts"
-  },
-  "bugs": "https://github.com/overextended/fivem-ts/issues",
   "keywords": [
     "fivem",
     "overextended"
   ],
-  "private": true,
+  "bugs": "https://github.com/overextended/fivem-ts/issues",
+  "license": "",
+  "author": {
+    "name": "Overextended",
+    "url": "https://overextended.dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/overextended/fivem-ts"
+  },
   "type": "module",
   "scripts": {
     "init": "bun run scripts/init.ts",
     "lint": "oxlint",
     "format": "oxfmt",
     "tsd": "bun tsdown --",
-    "dev": "bun tsdown --watch & bun webbuild --watch",
+    "dev": "bun-tasks tsd --watch ::: webbuild --watch",
     "webdev": "bun --cwd web vite dev --outDir ../dist/web --emptyOutDir",
     "webbuild": "bun --cwd web vite build --outDir ../dist/web --emptyOutDir",
     "build": "bun tsd & bun webbuild"
+  },
+  "dependencies": {
+    "@overextended/core": "^0.2.5",
+    "@overextended/ox_lib": "^3.35.0"
   },
   "devDependencies": {
     "@citizenfx/client": "latest",
     "@citizenfx/server": "latest",
     "@types/bun": "latest",
     "@types/node": "^22.13.10",
+    "bun-tasks": "^0.1.2",
     "fast-glob": "^3.3.3",
     "oxfmt": "^0.51.0",
     "oxlint": "^1.66.0",
@@ -41,9 +46,5 @@
   },
   "engines": {
     "node": ">=22.9.10"
-  },
-  "dependencies": {
-    "@overextended/core": "^0.2.5",
-    "@overextended/ox_lib": "^3.35.0"
   }
 }

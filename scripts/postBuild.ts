@@ -50,12 +50,13 @@ let fxmanifest = "";
 export default async function () {
   if (++buildCount < 2) return;
 
-  const { name, author, version, license, description }: typeof Package =
-    JSON.parse(await readFile("./package.json", "utf8"));
+  const { name, author, version, license, description }: typeof Package = JSON.parse(
+    await readFile("./package.json", "utf8"),
+  );
 
   const files = await generateDirectoryGlobs("./public");
 
-  files.unshift('locales/*.json')
+  files.unshift("locales/*.json");
 
   let body = Object.entries({
     name,
@@ -63,10 +64,7 @@ export default async function () {
     version,
     license,
     description,
-  }).reduce(
-    (acc, [key, value]) => (value ? `${acc}${key} '${value}'\n` : acc),
-    "",
-  );
+  }).reduce((acc, [key, value]) => (value ? `${acc}${key} '${value}'\n` : acc), "");
 
   body += `fx_version 'cerulean'
 game 'gta5'
@@ -78,7 +76,7 @@ ${reduceArray("files", files)}`;
 
   if (body === fxmanifest) return;
 
-  generatePublicInterface()
+  generatePublicInterface();
 
   console.log(`Generated new fxmanifest.lua`);
   fxmanifest = body;

@@ -12,9 +12,9 @@ const config: Record<string, UserConfig> = {
     },
     deps: {
       skipNodeModulesBundle: false,
-      alwaysBundle: '/.*/',
+      alwaysBundle: "/.*/",
       onlyBundle: false,
-      neverBundle: 'public/*'
+      neverBundle: "public/*",
     },
   },
 

@@ -8,7 +8,7 @@
       "client/*": ["./client/*"],
       "public/*": ["../public/*"],
       "types/*": ["../../types/*"]
-    },
+    }
   },
   "include": ["./", "../common/"]
 }
