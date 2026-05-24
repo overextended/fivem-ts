@@ -44,6 +44,6 @@
   },
   "dependencies": {
     "@overextended/core": "^0.2.5",
-    "@overextended/ox_lib": "^3.34.0"
+    "@overextended/ox_lib": "^3.35.0"
   }
 }
