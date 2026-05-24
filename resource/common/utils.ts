@@ -2,6 +2,7 @@ import { ResourceName } from "./resource";
 import type { Public } from "types/public";
 
 export function LoadFile<T extends keyof Public>(path: T): Public[T] {
+  path = path.replace('public/', 'dist/') as T;
   const file = LoadResourceFile(ResourceName, path);
 
   if (!file) {
