@@ -19,10 +19,14 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "init": "bun run scripts/init.ts",
     "lint": "oxlint",
     "format": "oxfmt",
     "tsd": "bun tsdown --",
-    "dev": "bun tsdown --watch"
+    "dev": "bun tsdown --watch & bun webbuild --watch",
+    "webdev": "bun --cwd web vite dev --outDir ../dist/web --emptyOutDir",
+    "webbuild": "bun --cwd web vite build --outDir ../dist/web --emptyOutDir",
+    "build": "bun tsd & bun webbuild"
   },
   "devDependencies": {
     "@citizenfx/client": "latest",

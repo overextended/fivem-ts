@@ -28,19 +28,47 @@ gh repo create <name> --template=overextended/fivem-ts
 
 ## Setup
 
-Customise `package.json` with your project name, author, and any other relevant information. This information is added to the fxmanifest when building the project.
+Initialise your project to set the project name and optionally scaffold a new web app.
 
-If you're looking to create a webapp (i.e. nui) consider scaffolding with Svelte.
+```bash
+bun run init
+```
+
+Customise `package.json` with the author, repository, and any other relevant information. This information is added to the fxmanifest when building the project.
 
 ```bash
 bunx sv create web
 ```
 
-## Development
+## Scripts
 
-Use `bun tsd` to build all production files in production mode using [tsdown](https://tsdown.dev/).
+### `bun tsd`
 
-During development use `bun dev` to actively rebuild modified files.
+Build all resource files in production mode using [tsdown](https://tsdown.dev/).
+
+### `bun dev`
+
+Run [tsdown](https://tsdown.dev/) in watch mode, to actively rebuild resource files as they are modified.
+
+### `bun lint`
+
+Run [Oxlint](https://oxc.rs/docs/guide/usage/linter.html) to analyse your project for potential errors, bugs, and code quality issues.
+
+### `bun format`
+
+Run [Oxfmt](https://oxc.rs/docs/guide/usage/formatter.html) to automatically reformat your project and ensure consistent code styling.
+
+### `bun webdev`
+
+Runs the [Vite](https://vite.dev/) dev server for live web development.
+
+### `bun webbuild`
+
+Builds your web project in production mode.
+
+### `bun run build`
+
+Runs the `bun tsd` and `bun webbuild` scripts to create a complete production-ready build of your project.
 
 ## Layout
 
