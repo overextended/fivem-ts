@@ -53,7 +53,9 @@ export default async function () {
   const { name, author, version, license, description }: typeof Package =
     JSON.parse(await readFile("./package.json", "utf8"));
 
-  const files = await generateDirectoryGlobs("./resource/public");
+  const files = await generateDirectoryGlobs("./public");
+
+  files.unshift('locales/*.json')
 
   let body = Object.entries({
     name,
