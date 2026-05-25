@@ -15,9 +15,10 @@ function walk(dir: string): string[] {
   });
 }
 
-export function generatePublicInterface() {
-  const files = walk("public");
-  const lines: string[] = ["/* auto-generated */", "", "export interface Public {"];
+export function generateInterface(dir: string) {
+  const files = walk(dir);
+  const name = dir.charAt(0).toUpperCase() + dir.slice(1);
+  const lines: string[] = ["/* auto-generated */", "", `export interface ${name} {`];
 
   for (const file of files) {
     const relative = normalize(path.relative(".", file));
@@ -36,5 +37,5 @@ export function generatePublicInterface() {
 
   lines.push("}");
 
-  writeFileSync("types/public.d.ts", lines.join("\n"), "utf8");
+  writeFileSync(`types/${dir}.d.ts`, lines.join("\n"), "utf8");
 }

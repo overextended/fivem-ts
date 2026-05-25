@@ -1,10 +1,9 @@
-import { writeFile } from "node:fs/promises";
-import { cp } from "node:fs/promises";
-import { readFile } from "node:fs/promises";
+import { cp, readFile, writeFile, access } from "node:fs/promises";
 import fg from "fast-glob";
 import { dirname, extname } from "node:path";
 import type Package from "../package.json";
-import { generatePublicInterface } from "./typegen.ts";
+import { generateInterface } from "./typegen.ts";
+import { waitFor } from "@overextended/core/utils";
 
 function reduceArray(name: string, files?: string[]): string {
   return files?.[0]
@@ -24,23 +23,29 @@ async function generateDirectoryGlobs(root: string) {
 
   for (const file of files) {
     const dir = dirname(file);
-    const ext = extname(file);
 
-    if (!groups.has(dir)) {
-      groups.set(dir, new Set());
+    let ext = extname(file);
+
+    if (ext === ".") {
+      ext = "";
     }
 
-    groups.get(dir)!.add(ext);
+    let exts = groups.get(dir);
+
+    if (!exts) {
+      exts = new Set();
+      groups.set(dir, exts);
+    }
+
+    exts.add(ext);
   }
 
-  return [...groups.entries()].map(([dir, exts]) => {
-    dir = dir === "." ? `` : `${dir}/`;
+  return [...groups.entries()].flatMap(([dir, exts]) => {
+    const prefix = dir === "." ? "dist/" : `dist/${dir}/`;
 
-    if (exts.size === 1) {
-      return `dist/${dir}*${[...exts][0]}`;
-    }
-
-    return `${dir}*`;
+    return [...exts].map((ext) => {
+      return ext ? `${prefix}*${ext}` : `${prefix}*`;
+    });
   });
 }
 
@@ -55,6 +60,22 @@ export default async function () {
   );
 
   const files = await generateDirectoryGlobs("./public");
+  let web;
+
+  try {
+    await access("./web");
+
+    web = await waitFor(
+      async () => {
+        const web = await generateDirectoryGlobs("./dist/web");
+
+        return web.length ? web : null;
+      },
+      { interval: 500, timeout: 1200000 },
+    );
+  } catch {}
+
+  if (web) files.push(...web);
 
   files.unshift("locales/*.json");
 
@@ -72,11 +93,12 @@ node_version '22'
 
 client_script 'dist/client.js'
 server_script 'dist/server.js'
+${web ? `ui_page 'dist/web/index.html'` : ``}
 ${reduceArray("files", files)}`;
 
   if (body === fxmanifest) return;
 
-  generatePublicInterface();
+  generateInterface("public");
 
   console.log(`Generated new fxmanifest.lua`);
   fxmanifest = body;

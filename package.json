@@ -26,10 +26,10 @@
     "dev": "bun-tasks tsd --watch ::: webbuild --watch",
     "webdev": "bun --cwd web vite dev --outDir ../dist/web --emptyOutDir",
     "webbuild": "bun --cwd web vite build --outDir ../dist/web --emptyOutDir",
-    "build": "bun tsd & bun webbuild"
+    "build": "bun-tasks tsd ::: bun webbuild"
   },
   "dependencies": {
-    "@overextended/core": "^0.2.5",
+    "@overextended/core": "^0.3.1",
     "@overextended/ox_lib": "^3.35.0"
   },
   "devDependencies": {
