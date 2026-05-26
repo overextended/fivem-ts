@@ -36,7 +36,7 @@
     "@citizenfx/client": "latest",
     "@citizenfx/server": "latest",
     "@types/bun": "latest",
-    "@types/node": "^22.13.10",
+    "@types/node": "^22.22.0",
     "bun-tasks": "^0.1.2",
     "fast-glob": "^3.3.3",
     "oxfmt": "^0.51.0",
@@ -45,6 +45,6 @@
     "typescript": "^6.0.3"
   },
   "engines": {
-    "node": ">=22.9.10"
+    "node": ">=22.22.0"
   }
 }
