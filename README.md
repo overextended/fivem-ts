@@ -12,7 +12,7 @@ Use any of the options below to initialise your resource.
 ### Using [bun create](https://bun.com/docs/runtime/templating/create)
 
 ```bash
-bun create overextended/fivem-ts
+bun create overextended/fivem-ts <name>
 ```
 
 ### Using [GitHub CLI](https://cli.github.com/)
@@ -23,22 +23,19 @@ gh repo create <name> --template=overextended/fivem-ts
 
 ### Alternative methods
 
-- [Create a new repository](https://github.com/new?template_name=fivem-ts&template_owner=overextended) on GitHub.
-- [Download the template](https://github.com/overextended/fivem-ts/archive/refs/heads/main.zip) directly.
+- [Create a new repository from the template](https://github.com/new?template_name=fivem-ts&template_owner=overextended)
+- [Download the template directly](https://github.com/overextended/fivem-ts/archive/refs/heads/main.zip)
 
 ## Setup
 
 Initialise your project to set the project name and optionally scaffold a new web app.
 
 ```bash
+bun install
 bun run init
 ```
 
 Customise `package.json` with the author, repository, and any other relevant information. This information is added to the fxmanifest when building the project.
-
-```bash
-bunx sv create web
-```
 
 ## Scripts
 
