@@ -13,7 +13,7 @@ function reduceArray(name: string, files?: string[]): string {
     : "";
 }
 
-async function generateDirectoryGlobs(root: string) {
+async function generateDirectoryGlobs(root: string, useRoot = false) {
   const files = await fg("**/*", {
     cwd: root,
     onlyFiles: true,
@@ -40,8 +40,10 @@ async function generateDirectoryGlobs(root: string) {
     exts.add(ext);
   }
 
+  const path = useRoot ? root : "dist"
+
   return [...groups.entries()].flatMap(([dir, exts]) => {
-    const prefix = dir === "." ? "dist/" : `dist/${dir}/`;
+    const prefix = dir === "." ? `${path}/` : `${path}/${dir}/`;
 
     return [...exts].map((ext) => {
       return ext ? `${prefix}*${ext}` : `${prefix}*`;
@@ -59,7 +61,7 @@ export default async function () {
     await readFile("./package.json", "utf8"),
   );
 
-  const files = await generateDirectoryGlobs("./public");
+  const files = await generateDirectoryGlobs("public");
   let web;
 
   try {
@@ -67,7 +69,7 @@ export default async function () {
 
     web = await waitFor(
       async () => {
-        const web = await generateDirectoryGlobs("./dist/web");
+        const web = await generateDirectoryGlobs("dist/web", true);
 
         return web.length ? web : null;
       },
