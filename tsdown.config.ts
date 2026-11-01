@@ -1,5 +1,6 @@
 import { defineConfig, type UserConfig } from "tsdown";
-import postBuild from "./scripts/postBuild.ts";
+import postBuild from "./scripts/postbuild.ts";
+import joaatPlugin from "./scripts/joaat.ts";
 
 const config: Record<string, UserConfig> = {
   resource: {
@@ -16,6 +17,7 @@ const config: Record<string, UserConfig> = {
       onlyBundle: false,
       neverBundle: "public/*",
     },
+    plugins: [joaatPlugin()],
   },
 
   client: {
