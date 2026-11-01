@@ -5,25 +5,30 @@ A template for creating FiveM resources with TypeScript.
 ## Getting started
 
 > [!NOTE]
-> Install [Bun](https://bun.com) and [Git](https://git-scm.com/) if you don't already have them.
+> Install [Nub](https://nubjs.com/) and [Git](https://git-scm.com/) if you don't already have them.
 
 Use any of the options below to initialise your resource.
 
-### Using [bun create](https://bun.com/docs/runtime/templating/create)
+### Using [`Git`](https://git-scm.com/)
 
-```bash
-bun create overextended/fivem-ts <name>
+```
+git clone --depth=1 https://github.com/overextended/fivem-ts <name>
+cd <name>
+rm -rf .git
+git init
+git add .
+git commit -m "Initial commit"
 ```
 
-### Using [GitHub CLI](https://cli.github.com/)
+### Using [`GitHub CLI`](https://cli.github.com/)
 
-```bash
+```
 gh repo create <name> --template=overextended/fivem-ts
 ```
 
 ### Alternative methods
 
-- [Create a new repository from the template](https://github.com/new?template_name=fivem-ts&template_owner=overextended)
+- [Create a new repository](https://github.com/new?template_name=fivem-ts&template_owner=overextended)
 - [Download the template directly](https://github.com/overextended/fivem-ts/archive/refs/heads/main.zip)
 
 ## Setup
@@ -31,41 +36,37 @@ gh repo create <name> --template=overextended/fivem-ts
 Initialise your project to set the project name and optionally scaffold a new web app.
 
 ```bash
-bun install
-bun run init
+nub install
+nub create vite web
 ```
 
 Customise `package.json` with the author, repository, and any other relevant information. This information is added to the fxmanifest when building the project.
 
 ## Scripts
 
-### `bun tsd`
+### `nub run build`
 
 Build all resource files in production mode using [tsdown](https://tsdown.dev/).
 
-### `bun dev`
+### `nub run dev`
 
 Run [tsdown](https://tsdown.dev/) in watch mode, to actively rebuild resource files as they are modified.
 
-### `bun lint`
+### `nub run lint`
 
 Run [Oxlint](https://oxc.rs/docs/guide/usage/linter.html) to analyse your project for potential errors, bugs, and code quality issues.
 
-### `bun format`
+### `nub run format`
 
 Run [Oxfmt](https://oxc.rs/docs/guide/usage/formatter.html) to automatically reformat your project and ensure consistent code styling.
 
-### `bun webdev`
+### `nub run webdev`
 
 Runs the [Vite](https://vite.dev/) dev server for live web development.
 
-### `bun webbuild`
+### `nub run webbuild`
 
 Builds your web project in production mode.
-
-### `bun run build`
-
-Runs the `bun tsd` and `bun webbuild` scripts to create a complete production-ready build of your project.
 
 ## Layout
 

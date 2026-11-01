@@ -1,24 +1,21 @@
 {
   "compilerOptions": {
-    "lib": ["esnext"],
-    "target": "esnext",
     "module": "esnext",
-    "moduleDetection": "force",
-    "allowJs": true,
-    "types": ["bun"],
     "moduleResolution": "bundler",
+    "target": "es2024",
+    "lib": ["es2024"],
+    "types": ["node", "@nubjs/types"],
+    "moduleDetection": "force",
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
-    "noEmit": true,
-    "strict": true,
+    "isolatedModules": true,
+    "noUncheckedSideEffectImports": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
     "skipLibCheck": true,
-    "noFallthroughCasesInSwitch": true,
+    "strict": true,
     "noUncheckedIndexedAccess": true,
-    "noImplicitOverride": true,
-    "noUnusedParameters": false,
-    "noPropertyAccessFromIndexSignature": false,
-    "rewriteRelativeImportExtensions": true,
-    "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true
+    "exactOptionalPropertyTypes": true,
+    "noEmit": true
   }
 }

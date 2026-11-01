@@ -1,8 +1,1 @@
-{
-  "starting": {
-    "server": "Starting %s:${server}",
-    "client": "Starting %s:${client}"
-  },
-  "server": "server",
-  "client": "client"
-}
+{}

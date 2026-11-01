@@ -1,4 +1,8 @@
 node_modules
+.env*
+!.env.example
+*.log
+.DS_Store
+
 /dist
 /fxmanifest.lua
-/.yarn.installed

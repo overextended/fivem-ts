@@ -12,16 +12,13 @@ const config: Record<string, UserConfig> = {
       entryFileNames: "[name].js",
     },
     deps: {
-      skipNodeModulesBundle: false,
-      alwaysBundle: "/.*/",
-      onlyBundle: false,
-      neverBundle: "public/*",
+      alwaysBundle: [/.*/]
     },
     plugins: [joaatPlugin()],
   },
 
   client: {
-    platform: "browser",
+    platform: "neutral",
     target: "es2023",
     format: "iife",
   },

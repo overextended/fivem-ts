@@ -3,13 +3,13 @@ import fg from "fast-glob";
 import { dirname, extname } from "node:path";
 import type Package from "../package.json";
 import { generateInterface } from "./typegen.ts";
-import { waitFor } from "@overextended/core/utils";
+import { $ } from 'zx';
 
 function reduceArray(name: string, files?: string[]): string {
   return files?.[0]
     ? `\n${name} {${files.reduce((acc, value) => {
-        return value ? `${acc}\n\t'${value}',` : acc;
-      }, "")}\n}\n`
+      return value ? `${acc}\n\t'${value}',` : acc;
+    }, "")}\n}\n`
     : "";
 }
 
@@ -53,6 +53,7 @@ async function generateDirectoryGlobs(root: string, useRoot = false) {
 
 let buildCount = 0;
 let fxmanifest = "";
+let watch = process.argv[2] === '--watch'
 
 export default async function () {
   if (++buildCount < 2) return;
@@ -62,22 +63,6 @@ export default async function () {
   );
 
   const files = await generateDirectoryGlobs("public");
-  let web;
-
-  try {
-    await access("./web");
-
-    web = await waitFor(
-      async () => {
-        const web = await generateDirectoryGlobs("dist/web", true);
-
-        return web.length ? web : null;
-      },
-      { interval: 500, timeout: 1200000 },
-    );
-  } catch {}
-
-  if (web) files.push(...web);
 
   files.unshift("locales/*.json");
 
@@ -91,24 +76,33 @@ export default async function () {
 
   body += `fx_version 'cerulean'
 game 'gta5'
-node_version '22'
 
 client_script 'dist/client.js'
 server_script 'dist/server.js'
-${web ? `ui_page 'dist/web/index.html'` : ``}
-${reduceArray("files", files)}`;
+`;
+
+  try {
+    await access('./web');
+
+    if (!watch) await $`nub run webbuild`;
+
+    files.push(...await generateDirectoryGlobs("dist/web", true));
+
+    body += `\nui_page 'dist/web/index.html'\n`
+  } catch { }
+
+  body += reduceArray("files", files);
 
   if (body === fxmanifest) return;
 
-  generateInterface("public");
-
-  console.log(`Generated new fxmanifest.lua`);
   fxmanifest = body;
 
-  await cp("./public", "./dist", {
-    recursive: true,
-  });
+  generateInterface("public");
 
-  await writeFile("./fxmanifest.lua", body);
-  await writeFile(".yarn.installed", new Date().toISOString());
+  await Promise.all([
+    writeFile("./fxmanifest.lua", body),
+    cp("./public", "./dist", { recursive: true }),
+  ]);
+
+  console.log(`Generated new fxmanifest.lua`);
 }

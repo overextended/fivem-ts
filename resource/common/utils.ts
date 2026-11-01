@@ -1,9 +1,9 @@
-import { ResourceName } from "./resource";
+import { cache } from "@overextended/ox_lib";
 import type { Public } from "types/public";
 
 export function LoadFile<T extends keyof Public>(path: T): Public[T] {
   path = path.replace("public/", "dist/") as T;
-  const file = LoadResourceFile(ResourceName, path);
+  const file = LoadResourceFile(cache.resource, path);
 
   if (!file) {
     throw new Error(`Failed to load file "${path}" (file not found)`);
