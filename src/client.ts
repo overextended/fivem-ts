@@ -1,4 +1,3 @@
-import hello from "players";
-import test from "players/common";
+import { HelloWorld } from "common";
 
-hello();
+HelloWorld();
