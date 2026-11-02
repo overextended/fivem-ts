@@ -12,7 +12,7 @@ const config: Record<string, UserConfig> = {
       entryFileNames: "[name].js",
     },
     deps: {
-      alwaysBundle: [/.*/]
+      alwaysBundle: [/.*/],
     },
     plugins: [joaatPlugin()],
   },
@@ -33,9 +33,9 @@ function createConfig(name: string): UserConfig {
   return {
     name,
     entry: {
-      [name]: `./resource/${name}/index.ts`,
+      [name]: `./src/${name}.ts`,
     },
-    tsconfig: `./resource/${name}/tsconfig.json`,
+    tsconfig: `./tsconfig.${name}.json`,
     ...config.resource,
     ...config[name],
     onSuccess: postBuild,

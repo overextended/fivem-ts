@@ -3,13 +3,13 @@ import fg from "fast-glob";
 import { dirname, extname } from "node:path";
 import type Package from "../package.json";
 import { generateInterface } from "./typegen.ts";
-import { $ } from 'zx';
+import { $ } from "zx";
 
 function reduceArray(name: string, files?: string[]): string {
   return files?.[0]
     ? `\n${name} {${files.reduce((acc, value) => {
-      return value ? `${acc}\n\t'${value}',` : acc;
-    }, "")}\n}\n`
+        return value ? `${acc}\n\t'${value}',` : acc;
+      }, "")}\n}\n`
     : "";
 }
 
@@ -40,7 +40,7 @@ async function generateDirectoryGlobs(root: string, useRoot = false) {
     exts.add(ext);
   }
 
-  const path = useRoot ? root : "dist"
+  const path = useRoot ? root : "dist";
 
   return [...groups.entries()].flatMap(([dir, exts]) => {
     const prefix = dir === "." ? `${path}/` : `${path}/${dir}/`;
@@ -53,7 +53,7 @@ async function generateDirectoryGlobs(root: string, useRoot = false) {
 
 let buildCount = 0;
 let fxmanifest = "";
-let watch = process.argv[2] === '--watch'
+let watch = process.argv[2] === "--watch";
 
 export default async function () {
   if (++buildCount < 2) return;
@@ -82,14 +82,14 @@ server_script 'dist/server.js'
 `;
 
   try {
-    await access('./web');
+    await access("./web");
 
     if (!watch) await $`nub run webbuild`;
 
-    files.push(...await generateDirectoryGlobs("dist/web", true));
+    files.push(...(await generateDirectoryGlobs("dist/web", true)));
 
-    body += `\nui_page 'dist/web/index.html'\n`
-  } catch { }
+    body += `\nui_page 'dist/web/index.html'\n`;
+  } catch {}
 
   body += reduceArray("files", files);
 

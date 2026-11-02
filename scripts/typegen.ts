@@ -18,7 +18,7 @@ function walk(dir: string): string[] {
 export function generateInterface(dir: string) {
   const files = walk(dir);
   const name = dir.charAt(0).toUpperCase() + dir.slice(1);
-  const lines: string[] = ["/* auto-generated */", "", `export interface ${name} {`];
+  const lines: string[] = ["/* auto-generated */", "", `declare interface ${name} {`];
 
   for (const file of files) {
     const relative = normalize(path.relative(".", file));

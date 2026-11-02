@@ -7,6 +7,13 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@overextended/core':
+        specifier: ^0.3.1
+        version: 0.3.1(typescript@7.0.2)
+      '@overextended/ox_lib':
+        specifier: ^3.41.0
+        version: 3.41.0
     devDependencies:
       '@citizenfx/client':
         specifier: latest
@@ -17,12 +24,6 @@ importers:
       '@nubjs/types':
         specifier: '>=0.4.13 <=0.9.7'
         version: 0.9.7(@types/node@26.6.6)
-      '@overextended/core':
-        specifier: ^0.3.1
-        version: 0.3.1(typescript@7.0.2)
-      '@overextended/ox_lib':
-        specifier: ^3.41.0
-        version: 3.41.0
       '@types/node':
         specifier: ^22
         version: 22.20.5

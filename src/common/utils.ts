@@ -1,5 +1,4 @@
 import { cache } from "@overextended/ox_lib";
-import type { Public } from "types/public";
 
 export function LoadFile<T extends keyof Public>(path: T): Public[T] {
   path = path.replace("public/", "dist/") as T;

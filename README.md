@@ -68,28 +68,33 @@ Runs the [Vite](https://vite.dev/) dev server for live web development.
 
 Builds your web project in production mode.
 
-## Layout
+## Project Layout
 
-### [/locales/](locales)
+- [`locales/`](locales/)
+  - Translation files used by [ox_lib's locale module](https://overextended.dev/ox_lib/Modules/Locale/Shared).
+- [`public/`](public/)
+  - Static assets served directly without processing or bundling.
+- [`src/`](src/)
+  - Main project source code.
+  - [`common/`](src/common/) – Shared code.
+  - [`client.ts`](src/client.ts) – Client-side entry point.
+  - [`server.ts`](src/server.ts) – Server-side entry point.
+- [`scripts/`](scripts/)
+  - Development scripts and project tooling.
+- [`types/`](types/)
+  - Project-wide type declarations and definitions.
 
-Contains translation files used with the [ox_lib](https://overextended.dev/ox_lib/Modules/Locale/Shared) locales module.
+## Module Structure
 
-### [/public/](public)
+Source code should generally be organised into feature-specific modules within `src/`. Each module can separate its client-side, server-side, and shared code into their respective directories.
 
-Static assets served directly without processing or bundling.
-
-### [/resource/](resource)
-
-Main project source code.
-
-- [`client`](resource/client) – client modules
-- [`common`](resource/common) – shared modules
-- [`server`](resource/server) – server modules
-
-### [/scripts/](scripts)
-
-Scripts used during project development.
-
-### [/types/](types)
-
-Type definitions used across the project.
+```
+src/
+├── client.ts
+├── server.ts
+├── common/
+└── <module>/
+    ├── client/
+    ├── server/
+    └── common/
+```

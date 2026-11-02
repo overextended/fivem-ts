@@ -4,7 +4,7 @@
     "moduleResolution": "bundler",
     "target": "es2024",
     "lib": ["es2024"],
-    "types": ["node", "@nubjs/types"],
+    "types": ["node", "@nubjs/types", "@citizenfx/client", "@citizenfx/server"],
     "moduleDetection": "force",
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
@@ -17,5 +17,14 @@
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
     "noEmit": true
-  }
+  },
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.client.json"
+    },
+    {
+      "path": "./tsconfig.server.json"
+    }
+  ]
 }

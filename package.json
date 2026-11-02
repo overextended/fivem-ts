@@ -1,15 +1,15 @@
 {
   "name": "fivem-ts",
-  "description": "",
-  "license": "",
-  "author": {
-    "name": ""
-  },
   "version": "0.0.1",
+  "description": "",
   "keywords": [
     "fivem",
     "overextended"
   ],
+  "license": "",
+  "author": {
+    "name": ""
+  },
   "type": "module",
   "scripts": {
     "lint": "oxlint",

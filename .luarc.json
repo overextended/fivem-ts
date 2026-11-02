@@ -1,0 +1,37 @@
+{
+  "$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json",
+  "workspace.library": [
+    "${env:FXSERVER_RESOURCES}/ox_lib",
+    "${env:LUALS_ADDONS}/ox_types/library",
+    "${env:LUALS_ADDONS}/fivem-lls-addon/library"
+  ],
+  "runtime.plugin": "${env:LUALS_ADDONS}/fivem-lls-addon/plugin.lua",
+  "runtime.version": "Lua 5.4",
+  "runtime.nonstandardSymbol": [
+    "/**/",
+    "`",
+    "+=",
+    "-=",
+    "*=",
+    "/=",
+    "<<=",
+    ">>=",
+    "&=",
+    "|=",
+    "^=",
+    "?.",
+    "?["
+  ],
+  "workspace.ignoreDir": [
+    ".vscode",
+    ".git",
+    ".github",
+    "node_modules",
+    "web"
+  ],
+  "workspace.useGitIgnore": true,
+  "diagnostics.disable": [
+    "unbalanced-assignments",
+    "lowercase-global"
+  ]
+}
