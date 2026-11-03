@@ -13,19 +13,20 @@ const config: Record<string, UserConfig> = {
     },
     deps: {
       alwaysBundle: [/.*/],
+      onlyBundle: false,
     },
     plugins: [joaatPlugin()],
   },
 
   client: {
-    platform: "neutral",
+    platform: "browser",
     target: "es2023",
-    format: "iife",
+    format: "esm",
   },
 
   server: {
     platform: "node",
-    format: "cjs",
+    format: "esm",
   },
 };
 
