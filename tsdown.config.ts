@@ -27,6 +27,7 @@ const config: Record<string, UserConfig> = {
   server: {
     platform: "node",
     format: "esm",
+    outDir: "./dist/server"
   },
 };
 

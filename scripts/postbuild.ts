@@ -95,12 +95,15 @@ server_script 'dist/dummy.js'
 
   if (body === fxmanifest) return;
 
+  const dummy = `require("./dist/server/server.js");`
   fxmanifest = body;
 
   generateInterface("public");
 
+
   await Promise.all([
     writeFile("./fxmanifest.lua", body),
+    writeFile("./dist/dummy.js", dummy),
     cp("./public", "./dist", { recursive: true }),
   ]);
 
